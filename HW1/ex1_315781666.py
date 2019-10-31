@@ -41,24 +41,31 @@ if number % 2 == 0:
 else:
     print("I am " + str(number) + " and I am odd")
 
-
-
 #########################################
 # Question 4 - do not delete this comment
 #########################################
-a = 7 # Replace ??? with a positive int of your choice.
-b = 6  # Replace ??? with a positive int of your choice.
+a = 9 # Replace ??? with a positive int of your choice.
+b = 5  # Replace ??? with a positive int of your choice.
 c = 5  # Replace ??? with a positive int of your choice.
 # Write the rest of the code for question 4 below here.
 
+first_calc = (a + b) ** (1 / c)
+second_calc = (a ** b) ** (1 / c)
+third_calc = (a / b) - (b / c)
 
-
+print("{:.5f}".format(first_calc))
+print("{:.5f}".format(second_calc))
+print("{:.5f}".format(third_calc))
 
 #########################################
 # Question 5 - do not delete this comment
 #########################################
-year = 1911 # Replace ??? with a positive int of your choice.
+year = 2004 # Replace ??? with a positive int of your choice.
 # Write the rest of the code for question 5 below here.
 
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print(str(year) + " is a leap year")
+else:
+    print(str(year) + " is not a leap year")
 
 
