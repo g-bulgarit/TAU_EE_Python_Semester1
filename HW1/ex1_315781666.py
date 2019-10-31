@@ -3,7 +3,7 @@
 #########################################
 # Question 1 - do not delete this comment
 #########################################
-R = 5 # Replace ??? with a positive float of your choice.
+R = 5.0 # Replace ??? with a positive float of your choice.
 # Write the rest of the code for question 1 below here.
 
 pi = 3.14 # we define pi like this...
@@ -12,9 +12,9 @@ circle_circumference = 2*pi*R
 circle_area = pi*(R**2)
 
 # Print the required stuff...
-print("Diameter is: " +str(circle_diameter))
-print("Circumference is: " +str(circle_circumference))
-print("Area is: " +str(circle_area))
+print("Diameter is: " + str(circle_diameter))
+print("Circumference is: " + str(circle_circumference))
+print("Area is: " + str(circle_area))
 
 #########################################
 # Question 2 - do not delete this comment
@@ -67,5 +67,3 @@ if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
     print(str(year) + " is a leap year")
 else:
     print(str(year) + " is not a leap year")
-
-
