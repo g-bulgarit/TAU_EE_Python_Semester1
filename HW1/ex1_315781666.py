@@ -19,11 +19,15 @@ print("Area is: " +str(circle_area))
 #########################################
 # Question 2 - do not delete this comment
 #########################################
-S = "A string of my choice" # Replace ??? a string of your choice.
+S = "Hello" # Replace ??? a string of your choice.
 # Write the rest of the code for question 2 below here.
 
-
-
+if len(S) > 10:
+    S_1 = S[0:10].lower()
+    S_2 = S[10:].upper()
+    print(S_1 + S_2)
+else:
+    print("$" + S[1:-1] + "@")
 
 #########################################
 # Question 3 - do not delete this comment
