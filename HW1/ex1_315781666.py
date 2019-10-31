@@ -32,9 +32,14 @@ else:
 #########################################
 # Question 3 - do not delete this comment
 #########################################
-number  = 7 # Replace ??? with a int of your choice.
+number  = 542 # Replace ??? with a int of your choice.
 # Write the rest of the code for question 3 below here.
 
+if number % 2 == 0:
+    # Number is even...
+    print("I am " + str(number) + " and I am even")
+else:
+    print("I am " + str(number) + " and I am odd")
 
 
 
