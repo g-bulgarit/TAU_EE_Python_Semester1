@@ -98,10 +98,18 @@ else:
 # Question 4 - do not delete this comment
 #########################################
 
-D = [1, 2, 4, 7]  # Replace the assignment with other lists to test your code.
+D = [1, 3, 0, 2]  # Replace the assignment with other lists to test your code.
 
 # Write the rest of the code for question 4 below here.
+final_list = []
+abs_val_list = []
+for index in range(0, len(D)):
+    abs_dis = abs(D[index] - D[index-1])
+    if abs_dis not in abs_val_list:
+        abs_val_list.append(abs_dis)
+        final_list.append(D[index])
 
+print(final_list)
 
 
 # End of code for question 4
