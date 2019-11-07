@@ -7,17 +7,12 @@
 a = 3  # Replace the assignment with a positive integer to test your code.
 A = [1, 2, 3, 4, 5]  # Replace the assignment with other lists to test your code.
 
-divisible_idx = None
-for idx, number in enumerate(A):
+divisible_idx = -1
+for number in A:
     if number % a == 0:
         # Set divisible_idx as the index of num.
-        divisible_idx = idx
-        break
-
-if divisible_idx is None:
-    print("-1")
-else:
-    print(divisible_idx)
+        divisible_idx = A.index(number)
+print(divisible_idx)
 
 
 # Write the code for question 2 using a for loop below here.
