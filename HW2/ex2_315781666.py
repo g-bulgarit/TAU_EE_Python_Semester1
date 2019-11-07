@@ -79,6 +79,15 @@ C = [0, 1, 2, 3, 4]  # Replace the assignment with other lists to test your code
 
 
 # Write the rest of the code for question 3 below here.
+if len(C) == 0:
+    print("0")
+elif len(C) == 1:
+    print(str(C[0]))
+else:
+    placeholder = 0
+    for idx in range(0,len(C)-1):
+        placeholder += (C[idx] * C[idx+1])
+    print(placeholder)
 
 
 
