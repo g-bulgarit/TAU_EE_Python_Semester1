@@ -122,7 +122,20 @@ my_string = 'abaadddefggg'  # Replace the assignment with other strings to test 
 k = 3  # Replace the assignment with a positive integer to test your code.
 
 # Write the rest of the code for question 5 below here.
+subst =""
+attempted_chars = []
+done_flag= False
+for char in my_string:
+    if char in attempted_chars:
+        pass
+    else:
+        attempted_chars.append(char)
+        pattern = str(k*char)
+        if pattern in my_string:
+            print("For length " + str(k) + ", found the substring " + str(pattern) + "!")
+            done_flag = True
+            break
 
-
-
+if done_flag == False:
+    print("Didn't find a substring of length " + str(k))
 # End of code for question 5
