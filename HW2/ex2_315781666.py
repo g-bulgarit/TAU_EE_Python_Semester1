@@ -51,8 +51,23 @@ for in_str in B:
 print("The number of strings longer than the average is: " +str(stdev_counter))
 
 # While loop variant:
+idx = 0
+letter_sum_w = 0
+while idx < len(B):
+    # Iter over all strings in B
+    letter_sum_w += len(B[idx])
+    idx += 1
 
+avg_str_len_w = letter_sum_w/len(B)
+stdev_counter_w = 0
 
+idx =0
+while idx < len(B):
+    if len(B[idx]) > avg_str_len_w:
+        stdev_counter_w += 1
+    idx += 1
+
+print("The number of strings longer than the average is: " +str(stdev_counter_w))
 
 # End of code for question 2
 
