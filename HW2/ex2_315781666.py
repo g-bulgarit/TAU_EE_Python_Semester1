@@ -7,18 +7,14 @@
 a = 3  # Replace the assignment with a positive integer to test your code.
 A = [1, 2, 3, 4, 5]  # Replace the assignment with other lists to test your code.
 
+# Write the rest of the code for question 1 below here.
+
 divisible_idx = -1
 for number in A:
     if number % a == 0:
         # Set divisible_idx as the index of num.
         divisible_idx = A.index(number)
 print(divisible_idx)
-
-
-# Write the code for question 2 using a for loop below here.
-
-# Write the code for question 2 using a while loop below here.
-
 
 # End of code for question 1
 
@@ -28,10 +24,7 @@ print(divisible_idx)
 B = ['hello', 'world', 'course', 'python', 'day']
 # Replace the assignment with other lists of strings (str) to test your code.
 
-
-# Write the rest of the code for question 2 below here.
-
-# For loop variant:
+# Write the code for question 2 using a for loop below here.
 letter_sum = 0
 for in_str in B:
     letter_sum += len(in_str)
@@ -45,7 +38,7 @@ for in_str in B:
 
 print("The number of strings longer than the average is: " +str(stdev_counter))
 
-# While loop variant:
+# Write the code for question 2 using a while loop below here.
 idx = 0
 letter_sum_w = 0
 while idx < len(B):
@@ -93,7 +86,7 @@ else:
 # Question 4 - do not delete this comment
 #########################################
 
-D = [1, 2, 4, 6, 5, 9]    # Replace the assignment with other lists to test your code.
+D = [1, 2, 4, 6, 5, 9]  # Replace the assignment with other lists to test your code.
 
 # Write the rest of the code for question 4 below here.
 final_list = []
