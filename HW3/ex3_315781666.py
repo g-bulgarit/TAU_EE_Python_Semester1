@@ -15,7 +15,6 @@ def sum_divisible_by_k(lst, k):
         return sum_ph
     else:
         return 0
-
     # replace this with your implementation
 
 
@@ -23,7 +22,13 @@ def sum_divisible_by_k(lst, k):
 # Question 2 - do not delete this comment
 #########################################
 def mult_odd_digits(n):
-    pass  # replace this with your implementation
+    mult_ph = 1
+    for char in str(n):
+        if int(char) % 2 != 0:
+            mult_ph *= int(char)
+
+    return mult_ph
+    # replace this with your implementation
 
 
 #########################################
@@ -59,3 +64,6 @@ def mat_transpose(mat):
 test_f1_lst = [45.5, 60, 73, 48]
 f1_k = 4
 print(sum_divisible_by_k(test_f1_lst, f1_k))
+
+
+print(mult_odd_digits(2048))
