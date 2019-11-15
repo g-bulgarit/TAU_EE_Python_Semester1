@@ -4,7 +4,19 @@
 # Question 1 - do not delete this comment
 #########################################
 def sum_divisible_by_k(lst, k):
-    pass  # replace this with your implementation
+    sum_ph = 0
+    is_div_by_k = 0
+    for number in lst:
+        if number % k == 0:
+            sum_ph += number
+            is_div_by_k = 1
+
+    if is_div_by_k:
+        return sum_ph
+    else:
+        return 0
+
+    # replace this with your implementation
 
 
 #########################################
@@ -41,3 +53,9 @@ def div_mat_by_scalar(mat, alpha):
 def mat_transpose(mat):
     pass  # replace this with your implementation
 
+
+
+#-----------
+test_f1_lst = [45.5, 60, 73, 48]
+f1_k = 4
+print(sum_divisible_by_k(test_f1_lst, f1_k))
