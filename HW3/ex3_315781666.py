@@ -50,7 +50,18 @@ def count_longest_repetition(s, c):
 # Question 4 - do not delete this comment
 #########################################
 def upper_strings(lst):
-    pass  # replace this with your implementation
+    if type(lst) != type(list()):
+        return -1
+    working_list = []
+    for thing in lst:
+        if type(thing) == type(str()):
+            working_list.append(thing.upper())
+        else:
+            working_list.append(thing)
+
+    lst = working_list
+    return lst
+    # replace this with your implementation
 
 
 #########################################
@@ -77,3 +88,6 @@ print(sum_divisible_by_k(test_f1_lst, f1_k))
 print(mult_odd_digits(2048))
 string_for_test = "abcde"
 print(count_longest_repetition(string_for_test, 'z'))
+
+vals = [11, 'TeSt', 3.14, 'cAsE']
+print(upper_strings(vals))
