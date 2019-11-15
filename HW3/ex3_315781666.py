@@ -68,6 +68,12 @@ def upper_strings(lst):
 # Question 5 - do not delete this comment
 #########################################
 def div_mat_by_scalar(mat, alpha):
+    new_matrix = [[], []]
+    for i in range(len(mat)):
+        for j in range(len(mat[i])):
+            new_matrix[i].append(mat[i][j]//alpha)
+
+    return new_matrix
     pass  # replace this with your implementation
 
 
@@ -91,3 +97,9 @@ print(count_longest_repetition(string_for_test, 'z'))
 
 vals = [11, 'TeSt', 3.14, 'cAsE']
 print(upper_strings(vals))
+
+mat1 = [[2,4], [6,8]]
+mat2 = div_mat_by_scalar([[10,15], [-3,6]], -5)
+print(mat1)
+print(mat2)
+
