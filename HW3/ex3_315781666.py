@@ -35,6 +35,14 @@ def mult_odd_digits(n):
 # Question 3 - do not delete this comment
 #########################################
 def count_longest_repetition(s, c):
+    # count longest repetition of c in string s
+    max_rep = 0
+    for length in range(len(s)+1):
+        search_string = length*c
+        if search_string in s:
+            max_rep = length
+
+    return max_rep
     pass  # replace this with your implementation
 
 
@@ -67,3 +75,5 @@ print(sum_divisible_by_k(test_f1_lst, f1_k))
 
 
 print(mult_odd_digits(2048))
+string_for_test = "abcde"
+print(count_longest_repetition(string_for_test, 'z'))
