@@ -74,32 +74,27 @@ def div_mat_by_scalar(mat, alpha):
             new_matrix[i].append(mat[i][j]//alpha)
 
     return new_matrix
-    pass  # replace this with your implementation
+    # replace this with your implementation
 
 
 #########################################
 # Question 6 - do not delete this comment
 #########################################
 def mat_transpose(mat):
-    pass  # replace this with your implementation
+    # Create a list of all numbers...
+    numbers_in_mat = []
+    for row in mat:
+        for number in row:
+            numbers_in_mat.append(number)
 
+    # build matrix placeholder
+    new_matrix_cols = len(mat)
+    new_matrix_rows = len(mat[0])
+    new_matrix = [[0]*new_matrix_rows]*new_matrix_cols
 
+    # fill matrix
+    for a in range(new_matrix_rows):
+        new_matrix[a] = numbers_in_mat[0+a :: new_matrix_cols]
 
-#-----------
-test_f1_lst = [45.5, 60, 73, 48]
-f1_k = 4
-print(sum_divisible_by_k(test_f1_lst, f1_k))
-
-
-print(mult_odd_digits(2048))
-string_for_test = "abcde"
-print(count_longest_repetition(string_for_test, 'z'))
-
-vals = [11, 'TeSt', 3.14, 'cAsE']
-print(upper_strings(vals))
-
-mat1 = [[2,4], [6,8]]
-mat2 = div_mat_by_scalar([[10,15], [-3,6]], -5)
-print(mat1)
-print(mat2)
-
+    return new_matrix
+    # replace this with your implementation
