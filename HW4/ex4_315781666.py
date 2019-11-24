@@ -49,7 +49,6 @@ def find_substring_locations(s, k):
 
     return output_dict
 
-print(find_substring_locations("Hello World", 3))
 #########################################
 # Question 4 - do not delete this comment
 #########################################
