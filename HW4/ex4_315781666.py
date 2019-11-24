@@ -33,9 +33,23 @@ def diff_sparse_matrices(lst):
 # Question 3 - do not delete this comment
 #########################################
 def find_substring_locations(s, k):
-    
-    pass  # remove this
+    # for every two characters, make a dictionary entry
+    output_dict = {}
+    for char_loc in range(0, len(s)-k+1):
+        chars = s[char_loc:char_loc+k]
 
+        if chars not in output_dict:
+            output_dict[chars] = []
+
+        for position in range(len(s)-k+1):
+            pair = s[position:position+k]
+            if pair == chars:
+                if position not in output_dict[chars]:
+                    output_dict[chars].append(position)
+
+    return output_dict
+
+print(find_substring_locations("Hello World", 3))
 #########################################
 # Question 4 - do not delete this comment
 #########################################
