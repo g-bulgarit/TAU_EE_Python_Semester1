@@ -83,24 +83,14 @@ def div_mat_by_scalar(mat, alpha):
 # Question 6 - do not delete this comment
 #########################################
 def mat_transpose(mat):
+    output_mat = []
 
-    new_matrix = []
-    # get new matrix size
-    new_matrix_cols = len(mat)
-    new_matrix_rows = len(mat[0])
+    for column in range(len(mat[0])): # For every column of the input matrix,
+        line = []  # Create a new empty list, to which we will add all mat[row][column] values
+        for row in range(len(mat)):
+            line.append(mat[row][column])  # Add these values to the line
+        output_mat.append(line)  # Add the as a row to our 'final matrix' - now we have 1 row, let's continue...
+    return output_mat
 
-    # add rows to our new matrix:
-    for row in range(new_matrix_rows):
-        new_matrix.append([])
-
-    # add columns to our new matrix
-    for row in range(new_matrix_rows):
-        for col in range(new_matrix_cols):
-            new_matrix[row].append(0)
-
-    # fill matrix
-    for row in range(len(mat)):
-        for col in range(len(mat[row])):
-            new_matrix[col][row] += mat[row][col]
-
-    return new_matrix
+q =  [[1,2],[3,4],[5,6], [7,8]]
+print(mat_transpose(q))
