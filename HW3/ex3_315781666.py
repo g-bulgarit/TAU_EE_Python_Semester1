@@ -91,6 +91,3 @@ def mat_transpose(mat):
             line.append(mat[row][column])  # Add these values to the line
         output_mat.append(line)  # Add the as a row to our 'final matrix' - now we have 1 row, let's continue...
     return output_mat
-
-q =  [[1,2],[3,4],[5,6], [7,8]]
-print(mat_transpose(q))
