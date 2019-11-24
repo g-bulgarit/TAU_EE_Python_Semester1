@@ -68,12 +68,14 @@ def upper_strings(lst):
 # Question 5 - do not delete this comment
 #########################################
 def div_mat_by_scalar(mat, alpha):
-    new_matrix = [[], []]
+    out_matrix = []
     for i in range(len(mat)):
+        line = []
         for j in range(len(mat[i])):
-            new_matrix[i].append(mat[i][j]//alpha)
+            line.append(mat[i][j]//alpha)
+        out_matrix.append(line)
 
-    return new_matrix
+    return out_matrix
     # replace this with your implementation
 
 
@@ -81,20 +83,24 @@ def div_mat_by_scalar(mat, alpha):
 # Question 6 - do not delete this comment
 #########################################
 def mat_transpose(mat):
-    # Create a list of all numbers...
-    numbers_in_mat = []
-    for row in mat:
-        for number in row:
-            numbers_in_mat.append(number)
 
-    # build matrix placeholder
+    new_matrix = []
+    # get new matrix size
     new_matrix_cols = len(mat)
     new_matrix_rows = len(mat[0])
-    new_matrix = [[0]*new_matrix_rows]*new_matrix_cols
+
+    # add rows to our new matrix:
+    for row in range(new_matrix_rows):
+        new_matrix.append([])
+
+    # add columns to our new matrix
+    for row in range(new_matrix_rows):
+        for col in range(new_matrix_cols):
+            new_matrix[row].append(0)
 
     # fill matrix
-    for a in range(new_matrix_rows):
-        new_matrix[a] = numbers_in_mat[0+a :: new_matrix_cols]
+    for row in range(len(mat)):
+        for col in range(len(mat[row])):
+            new_matrix[col][row] += mat[row][col]
 
     return new_matrix
-    # replace this with your implementation
