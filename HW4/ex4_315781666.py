@@ -21,8 +21,6 @@ def second_most_popular_character(my_string):
 
     return chr(min(candidates))
 
-print(second_most_popular_character("HelloWorld"))
-print(second_most_popular_character("cccaabb"))
 #########################################
 # Question 2 - do not delete this comment
 #########################################
