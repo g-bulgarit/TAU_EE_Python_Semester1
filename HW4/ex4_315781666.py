@@ -92,10 +92,6 @@ def simple_sent_analysis(in_file):
         print("Cannot encode " + str(in_file) + " due to IO error")
         return output_dict
 
-
-
-
-print(simple_sent_analysis("q5_input_example_1.txt"))
 #########################################
 # Question 6 - do not delete this comment
 #########################################
