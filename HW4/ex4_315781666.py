@@ -53,7 +53,14 @@ def find_substring_locations(s, k):
 # Question 4 - do not delete this comment
 #########################################
 def count_lines(in_file, out_file):
-    pass #replace this with your implementation
+
+    with open(in_file, 'r') as fp:
+        lines = len(fp.readlines())
+        fp.close()
+
+    with open(out_file, 'w') as wf:
+        wf.write(str(lines))
+        wf.close()
 
 #########################################
 # Question 5 - do not delete this comment
