@@ -67,28 +67,30 @@ def count_lines(in_file, out_file):
 #########################################
 def simple_sent_analysis(in_file):
     forbidden_chars = ["!", "?", "-", ";", "$", "%",".", ","]
-    output_dict = {"happy":0,
-                   "sad":0}
+    output_dict = {"happy":0, "sad":0}
+    try:
+        with open(in_file, 'r') as fp:
+            lines = fp.readlines()
+            for line in lines:
+                line = line.strip().lower().split(" ")  # Sanitize a bit...
 
-    with open(in_file, 'r') as fp:
-        lines = fp.readlines()
-        for line in lines:
-            line = line.strip().lower().split(" ")
+                for word in line:
+                    # Sanitize moreeeeeeeee
+                    if word[0] in forbidden_chars:
+                        word = word[1:]
+                    if word[-1] in forbidden_chars:
+                        word = word[:-1]
 
-            for word in line:
-                # Sanitize moreeeeeeeee
-                if word[0] in forbidden_chars:
-                    word = word[1:]
-                if word[-1] in forbidden_chars:
-                    word = word[:-1]
-
-                if word == "happy":
-                    output_dict["happy"] += 1
-                if word == "sad":
-                    output_dict["sad"] += 1
-        fp.close()
-        return (output_dict)
-
+                    # Check sentiment
+                    if word == "happy":
+                        output_dict["happy"] += 1
+                    if word == "sad":
+                        output_dict["sad"] += 1
+            fp.close()
+            return output_dict
+    except IOError:
+        print("Cannot encode " + str(in_file) + " due to IO error")
+        return output_dict
 
 
 
