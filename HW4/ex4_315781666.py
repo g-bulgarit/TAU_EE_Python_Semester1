@@ -66,9 +66,34 @@ def count_lines(in_file, out_file):
 # Question 5 - do not delete this comment
 #########################################
 def simple_sent_analysis(in_file):
-    pass #replace this with your implementation
+    forbidden_chars = ["!", "?", "-", ";", "$", "%",".", ","]
+    output_dict = {"happy":0,
+                   "sad":0}
+
+    with open(in_file, 'r') as fp:
+        lines = fp.readlines()
+        for line in lines:
+            line = line.strip().lower().split(" ")
+
+            for word in line:
+                # Sanitize moreeeeeeeee
+                if word[0] in forbidden_chars:
+                    word = word[1:]
+                if word[-1] in forbidden_chars:
+                    word = word[:-1]
+
+                if word == "happy":
+                    output_dict["happy"] += 1
+                if word == "sad":
+                    output_dict["sad"] += 1
+        fp.close()
+        return (output_dict)
 
 
+
+
+
+print(simple_sent_analysis("q5_input_example_1.txt"))
 #########################################
 # Question 6 - do not delete this comment
 #########################################
