@@ -45,10 +45,6 @@ def diff_sparse_matrices(lst):
 
     return output_mat  # remove this
 
-mat1 = {(1,3):2, (2,7):1}
-mat2 = {(1,3):2}
-mat_list = [mat1, mat2]
-print(diff_sparse_matrices(mat_list))
 
 #########################################
 # Question 3 - do not delete this comment
