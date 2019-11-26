@@ -37,14 +37,16 @@ def diff_sparse_matrices(lst):
             try:
                 # If the value exist- this operation is valid
                 output_mat[key_tuple] -= matrix[key_tuple]
+                if output_mat[key_tuple] == 0:  # if 0 is left, delete it.
+                    output_mat.pop(key_tuple)
             except KeyError:
                 # if the value does not exist - add it.
                 output_mat[key_tuple] = matrix.get(key_tuple)
 
     return output_mat  # remove this
 
-mat1 = {(0,1):2, (1,0):3, (1,1):4}
-mat2 = {(0,1):1, (1,1):3}
+mat1 = {(1,3):2, (2,7):1}
+mat2 = {(1,3):2}
 mat_list = [mat1, mat2]
 print(diff_sparse_matrices(mat_list))
 
