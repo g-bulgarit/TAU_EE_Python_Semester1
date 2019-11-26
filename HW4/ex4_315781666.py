@@ -25,9 +25,28 @@ def second_most_popular_character(my_string):
 # Question 2 - do not delete this comment
 #########################################
 def diff_sparse_matrices(lst):
+    # create a new matrix(dict) that is empty.
+    output_mat = {}
 
-    pass  # remove this
+    # add all values of each matrix in matrix list,
+    # if value already exists - subtract,
+    # otherwise - add new value to the output matrix.
 
+    for matrix in lst:
+        for key_tuple in matrix:
+            try:
+                # If the value exist- this operation is valid
+                output_mat[key_tuple] -= matrix[key_tuple]
+            except KeyError:
+                # if the value does not exist - add it.
+                output_mat[key_tuple] = matrix.get(key_tuple)
+
+    return output_mat  # remove this
+
+mat1 = {(0,1):2, (1,0):3, (1,1):4}
+mat2 = {(0,1):1, (1,1):3}
+mat_list = [mat1, mat2]
+print(diff_sparse_matrices(mat_list))
 
 #########################################
 # Question 3 - do not delete this comment
