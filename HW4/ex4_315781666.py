@@ -113,8 +113,71 @@ def simple_sent_analysis(in_file):
 # Question 6 - do not delete this comment
 #########################################
 def calc_profit_per_group(in_file):
-    pass #replace this with your implementation
+    allowed = ["happy", "sad", "neutral"]
+    output_dict = {"happy" : 0,
+                   "sad" : 0,
+                   "neutral" : 0}
+    try:
+        lines = []
+        with open(in_file, 'r')as fp:
+            for line in fp.readlines():
+                lines.append(line)
+            fp.close()
 
+        #     Work on the acquired lines...
+        #     Perform Checks:
+        seen_series = []
+        for line in lines:
+            line = line.strip().split(",")
+            if len(line) != 3:
+                raise ValueError("Invalid input")
+
+            try:  # Test if it's a number
+                q = float(line[1]) /2
+            except ValueError:
+                 raise ValueError("Invalid input")
+
+            if str(line[2]).strip() not in allowed:
+                raise ValueError("Invalid input")
+
+            series_name = str(line[0]).strip()
+            if series_name not in seen_series:
+                seen_series.append(series_name)
+            else:
+                raise ValueError("The series " + series_name + " appears more than once")
+
+        #   Now continue
+        happy_counter = 0
+        neutral_counter = 0
+        sad_counter = 0
+
+        for series in lines:
+            # Sanitize lines:
+
+
+            series = series.strip().split(",")
+            series_profit = float(series[1])
+            series_profile = str(series[2]).strip()
+            output_dict[series_profile] += series_profit
+            if series_profile == "happy": happy_counter+=1
+            if series_profile == "sad": sad_counter+=1
+            if series_profile == "neutral": neutral_counter+=1
+
+
+        #   Replaces 0s in the dict with NA
+        for key in output_dict:
+            if key == "happy": output_dict[key] /= happy_counter
+            if key == "sad": output_dict[key] /= sad_counter
+            if key == "neutral": output_dict[key] /= neutral_counter
+
+            if output_dict[key] == 0:
+                output_dict[key] = "NA"
+
+    except IOError:
+        print("Cannot use " + str(in_file) + " due to IO error")
+    return output_dict
+
+print(calc_profit_per_group("q6_input_good_example_1.csv"))
 #########################
 # main code - do not delete this comment
 # You can add more validation cases below
