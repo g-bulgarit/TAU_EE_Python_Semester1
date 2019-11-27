@@ -166,12 +166,13 @@ def calc_profit_per_group(in_file):
 
         #   Replaces 0s in the dict with NA
         for key in output_dict:
-            if key == "happy": output_dict[key] /= happy_counter
-            if key == "sad": output_dict[key] /= sad_counter
-            if key == "neutral": output_dict[key] /= neutral_counter
-
             if output_dict[key] == 0:
                 output_dict[key] = "NA"
+            else:
+                if key == "happy": output_dict[key] /= happy_counter
+                if key == "sad": output_dict[key] /= sad_counter
+                if key == "neutral": output_dict[key] /= neutral_counter
+
 
     except IOError:
         print("Cannot use " + str(in_file) + " due to IO error")
