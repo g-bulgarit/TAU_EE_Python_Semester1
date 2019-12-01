@@ -178,7 +178,6 @@ def calc_profit_per_group(in_file):
         print("Cannot use " + str(in_file) + " due to IO error")
     return output_dict
 
-print(calc_profit_per_group("q6_input_good_example_1.csv"))
 #########################
 # main code - do not delete this comment
 # You can add more validation cases below
