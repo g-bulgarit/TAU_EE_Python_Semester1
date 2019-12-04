@@ -3,6 +3,8 @@
 #########################################
 # Question 1 - do not delete this comment
 #########################################
+
+
 def second_most_popular_character(my_string):
     letter_dict = {}
 
@@ -12,11 +14,13 @@ def second_most_popular_character(my_string):
         else:
             letter_dict[char] += 1
 
-    max = sorted(list(letter_dict.values()))[-2]
+    sorted_values = sorted(list(letter_dict.values()))
+    sorted_values = list(set(sorted_values))  # force each element to be unique
+    max_value = sorted_values[-2]
 
     candidates = []
     for thing in letter_dict:
-        if letter_dict[thing] == max:
+        if letter_dict[thing] == max_value:
             candidates.append(ord(thing))
 
     return chr(min(candidates))
@@ -24,6 +28,8 @@ def second_most_popular_character(my_string):
 #########################################
 # Question 2 - do not delete this comment
 #########################################
+
+
 def diff_sparse_matrices(lst):
     # create a new matrix(dict) that is empty.
     output_mat = {}
@@ -43,7 +49,7 @@ def diff_sparse_matrices(lst):
                 # if the value does not exist - add it.
                 output_mat[key_tuple] = matrix.get(key_tuple)
 
-    return output_mat  # remove this
+    return output_mat
 
 
 #########################################
@@ -69,6 +75,8 @@ def find_substring_locations(s, k):
 #########################################
 # Question 4 - do not delete this comment
 #########################################
+
+
 def count_lines(in_file, out_file):
 
     with open(in_file, 'r') as fp:
@@ -82,9 +90,11 @@ def count_lines(in_file, out_file):
 #########################################
 # Question 5 - do not delete this comment
 #########################################
+
+
 def simple_sent_analysis(in_file):
-    forbidden_chars = ["!", "?", "-", ";", "$", "%",".", ","]
-    output_dict = {"happy":0, "sad":0}
+    forbidden_chars = ["!", "?", "-", ";", "$", "%", ".", ","]
+    output_dict = {"happy": 0, "sad": 0}
     try:
         with open(in_file, 'r') as fp:
             lines = fp.readlines()
@@ -112,11 +122,13 @@ def simple_sent_analysis(in_file):
 #########################################
 # Question 6 - do not delete this comment
 #########################################
+
+
 def calc_profit_per_group(in_file):
     allowed = ["happy", "sad", "neutral"]
-    output_dict = {"happy" : 0,
-                   "sad" : 0,
-                   "neutral" : 0}
+    output_dict = {"happy": 0,
+                   "sad": 0,
+                   "neutral": 0}
     try:
         lines = []
         with open(in_file, 'r')as fp:
@@ -133,9 +145,9 @@ def calc_profit_per_group(in_file):
                 raise ValueError("Invalid input")
 
             try:  # Test if it's a number
-                q = float(line[1]) /2
+                q = float(line[1]) / 2
             except ValueError:
-                 raise ValueError("Invalid input")
+                raise ValueError("Invalid input")
 
             if str(line[2]).strip() not in allowed:
                 raise ValueError("Invalid input")
@@ -153,26 +165,28 @@ def calc_profit_per_group(in_file):
 
         for series in lines:
             # Sanitize lines:
-
-
             series = series.strip().split(",")
             series_profit = float(series[1])
             series_profile = str(series[2]).strip()
             output_dict[series_profile] += series_profit
-            if series_profile == "happy": happy_counter+=1
-            if series_profile == "sad": sad_counter+=1
-            if series_profile == "neutral": neutral_counter+=1
-
+            if series_profile == "happy":
+                happy_counter += 1
+            if series_profile == "sad":
+                sad_counter += 1
+            if series_profile == "neutral":
+                neutral_counter += 1
 
         #   Replaces 0s in the dict with NA
         for key in output_dict:
             if output_dict[key] == 0:
                 output_dict[key] = "NA"
             else:
-                if key == "happy": output_dict[key] /= happy_counter
-                if key == "sad": output_dict[key] /= sad_counter
-                if key == "neutral": output_dict[key] /= neutral_counter
-
+                if key == "happy":
+                    output_dict[key] /= happy_counter
+                if key == "sad":
+                    output_dict[key] /= sad_counter
+                if key == "neutral":
+                    output_dict[key] /= neutral_counter
 
     except IOError:
         print("Cannot use " + str(in_file) + " due to IO error")
