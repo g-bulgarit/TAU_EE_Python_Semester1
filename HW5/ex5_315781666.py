@@ -35,14 +35,17 @@ def is_palindrome(s):
     else:
         return False
 
-
-
 #########################################
 # Question 4 - do not delete this comment
 #########################################
 def climb_combinations(n):
-    pass  # replace this with your implementation
-
+    # to climb n steps, we have
+    if n == 1:
+        return 1  # one option to climb one step
+    if n==2:
+        return 2 # two options to climb two steps
+    else:
+        return climb_combinations(n-1) + climb_combinations(n-2)
 
 #########################################
 # Question 5 - do not delete this comment
