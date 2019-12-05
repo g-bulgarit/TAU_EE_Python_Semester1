@@ -1,24 +1,40 @@
 ''' Exercise #5. Python for Engineers.'''
-
 #########################################
 # Question 1 - do not delete this comment
 #########################################
 def reverse_string(s):
-    pass  # replace this with your implementation
+    if len(s) == 1:
+        return s
+    else:
+        return s[-1]+reverse_string(s[:-1])
+
 
 
 #########################################
 # Question 2 - do not delete this comment
 #########################################
 def find_maximum(lst):
-    pass  # replace this with your implementation
-
+    if len(lst) == 0:
+        return -1
+    if len(lst) == 1:
+        return lst[0]
+    else:
+        if lst[-1]> find_maximum(lst[0:-1]):
+            return lst[-1]
+        else:
+            return find_maximum(lst[0:-1])
 
 #########################################
 # Question 3 - do not delete this comment
 #########################################
 def is_palindrome(s):
-    pass  # replace this with your implementation
+    if len(s) == 1 or len(s) == 0:
+        return True
+    if s[0] == s[-1] and is_palindrome(s[1:-1]):
+        return True
+    else:
+        return False
+
 
 
 #########################################
