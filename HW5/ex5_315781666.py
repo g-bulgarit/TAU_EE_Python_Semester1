@@ -8,8 +8,6 @@ def reverse_string(s):
     else:
         return s[-1]+reverse_string(s[:-1])
 
-
-
 #########################################
 # Question 2 - do not delete this comment
 #########################################
@@ -51,7 +49,24 @@ def climb_combinations(n):
 # Question 5 - do not delete this comment
 #########################################
 def is_valid_paren(s, cnt=0):
-    pass  # replace this with your implementation
+    lookout = ["(", ")"]
+    # if cnt == 0:
+    #     return True
+    if len(s) == 0:
+        if cnt != 0:
+            return False
+        else:
+            return True
+    if s[0] not in lookout:
+        s = s[1:]
+
+    if s[0] == "(":
+        cnt += 1
+    elif s[0] == ")":
+        cnt -= 1
+
+    return is_valid_paren(s[1:], cnt)
+
 
 
 #########################
