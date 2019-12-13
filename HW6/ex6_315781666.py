@@ -51,15 +51,39 @@ def climb_combinations_memo(n, memo=None):
 # Question 3 - do not delete this comment
 #########################################
 def catalan_rec(n,memo=None):
-    pass #replace this with your implementation
-    
+    if n == 0:
+        return 1
+    if memo == None:
+        memo = {}
+
+    if n not in memo:
+        # Do the calculation
+        # 0:1,1:1,2:2,3:5,4:14,42,132,429
+        memo[n] = catalan_rec(n-1, memo)
+        pass
+
+    return memo[n]
 
 #########################################
 # Question 4.a - do not delete this comment
 #########################################
 def find_num_changes_rec(n, lst):
-    pass #replace this with your implementation
-    
+    if len(lst) == 0:
+        return 0
+    if len(lst) == 1 and lst[-1] <= n:
+        return 1
+    if n == 0 or n < 0:
+        return find_num_changes_rec(n+lst[-1], lst[0:-1])
+    # Work with example: coins = [1,2,5,6] | target = 5 | answer = 4
+    # obviously, can't use 6 because 6 is bigger than 5 (which is n)
+    # thus,
+    if lst[-1] > n:
+        return find_num_changes_rec(n, lst[:-1])  # Remove the last element of this list.
+    else:
+        # Otherwise, if n is equal or smaller than the target,
+        # Start traversing the list, adding 1 to the result as we 'used up a move'
+        return 1 + find_num_changes_rec(n-(lst[-1]), lst)
+
 
 #########################################
 # Question 4.b - do not delete this comment
@@ -72,7 +96,7 @@ def find_num_changes_mem(n, lst, memo=None):
 # main code - do not delete this comment
 # You can add more validation cases below
 #########################
-
+"""
 #Question 1.a tests - you can and should add more    
 print(four_bonacci_rec(0) == 0)
 print(four_bonacci_rec(5) == 12)
@@ -89,17 +113,21 @@ print(climb_combinations_memo(42) == 433494437)
 
 #Question 3 tests - you can and should add more    
 cat_list = [1,1,2,5,14,42,132,429]
+print(catalan_rec(3))
 for n,res in enumerate(cat_list):
     print(catalan_rec(n) == res)
-
+"""
 #Question 4.a tests - you can and should add more        
 print(find_num_changes_rec(5,[1,2,5,6]) == 4)
 print(find_num_changes_rec(4,[1,2,5,6]) == 3)
 print(find_num_changes_rec(0.9,[1,2,5,6]) == 0)
+print(find_num_changes_rec(1,[2,5,6]) == 0)
+print(find_num_changes_rec(-1,[1,2,5,6]) == 0)
+print(find_num_changes_rec(2,[0.5,1]) == 3)
 
 #Question 4.b tests - you can and should add more        
-print(find_num_changes_mem(5,[1,2,5,6]) == 4)
-print(find_num_changes_mem(4,[1,2,5,6]) == 3)
-print(find_num_changes_mem(0.9,[1,2,5,6]) == 0)
+#print(find_num_changes_mem(5,[1,2,5,6]) == 4)
+#print(find_num_changes_mem(4,[1,2,5,6]) == 3)
+#print(find_num_changes_mem(0.9,[1,2,5,6]) == 0)
 
 # ============================== END OF FILE =================================
