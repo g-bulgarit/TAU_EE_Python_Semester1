@@ -18,7 +18,7 @@ def four_bonacci_rec(n):
 def four_bonacci_mem(n, memo=None):
     # Same as last question, but save results in
     # dictionary before returning them...
-    
+
     if n <= 3:
         return n
     if memo == None:
@@ -34,7 +34,17 @@ def four_bonacci_mem(n, memo=None):
 # Question 2 - do not delete this comment
 #########################################
 def climb_combinations_memo(n, memo=None):
-    pass #replace this with your implementation
+    # Same idea as last time...
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    if memo == None:
+        memo = {}
+    if n not in memo:
+        memo[n] = (climb_combinations_memo(n-1, memo) +
+                   climb_combinations_memo(n-2, memo))
+    return memo[n]
 
 
 #########################################
@@ -72,8 +82,8 @@ print(four_bonacci_rec(8) == 85)
 print(four_bonacci_mem(0) == 0)
 print(four_bonacci_mem(5) == 12)
 print(four_bonacci_mem(8) == 85)
-
-#Question 2 tests - you can and should add more    
+print(four_bonacci_mem(100) == 14138518272689255365704383960)
+#Question 2 tests - you can and should add more
 print(climb_combinations_memo(4) == 5)
 print(climb_combinations_memo(42) == 433494437)
 
