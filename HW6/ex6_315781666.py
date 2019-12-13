@@ -68,16 +68,23 @@ def catalan_rec(n,memo=None):
 # Question 4.a - do not delete this comment
 #########################################
 def find_num_changes_rec(n, lst):
-    if len(lst) == 0:
+    if n <= 0 and len(lst) != 0:
+        return find_num_changes_rec(n+lst[-1], lst[0:-1])
+
+    if len(lst) == 0 and n != 0:
         return 0
+
+    if n == 0:
+        return 1
+
+    # Tfira:
     if len(lst) == 1 and lst[-1] <= n:
         return 1
-    if n == 0 or n < 0:
-        return find_num_changes_rec(n+lst[-1], lst[0:-1])
+
     # Work with example: coins = [1,2,5,6] | target = 5 | answer = 4
     # obviously, can't use 6 because 6 is bigger than 5 (which is n)
     # thus,
-    if lst[-1] > n:
+    if lst[-1] > n:  # Last element is too big to be used!
         return find_num_changes_rec(n, lst[:-1])  # Remove the last element of this list.
     else:
         # Otherwise, if n is equal or smaller than the target,
@@ -124,6 +131,10 @@ print(find_num_changes_rec(0.9,[1,2,5,6]) == 0)
 print(find_num_changes_rec(1,[2,5,6]) == 0)
 print(find_num_changes_rec(-1,[1,2,5,6]) == 0)
 print(find_num_changes_rec(2,[0.5,1]) == 3)
+print(find_num_changes_rec(2,[]) == 0)
+print(find_num_changes_rec(0,[]) == 1)
+print(find_num_changes_rec(0,[1]) == 1)
+print(find_num_changes_rec(0,[1]))
 
 #Question 4.b tests - you can and should add more        
 #print(find_num_changes_mem(5,[1,2,5,6]) == 4)
