@@ -51,18 +51,24 @@ def climb_combinations_memo(n, memo=None):
 # Question 3 - do not delete this comment
 #########################################
 def catalan_rec(n,memo=None):
-    if n == 0:
-        return 1
     if memo == None:
+        # Fabricate dictionary for memoization
         memo = {}
+        memo[0] = 1
+        memo[1] = 1
 
-    if n not in memo:
-        # Do the calculation
-        # 0:1,1:1,2:2,3:5,4:14,42,132,429
-        memo[n] = catalan_rec(n-1, memo)
-        pass
+    if n in memo:
+        # If already encountered - return the value instead of computing
+        return memo[n]
 
-    return memo[n]
+    else:
+        next_cat_value = 0
+        for index in range(n):
+            next_cat_value += catalan_rec(index, memo) * catalan_rec(n-1-index, memo)
+            memo[n] = next_cat_value
+        return next_cat_value
+
+
 
 #########################################
 # Question 4.a - do not delete this comment
