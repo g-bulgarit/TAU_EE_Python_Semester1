@@ -88,13 +88,23 @@ def find_num_changes_rec(n, lst):
 def find_num_changes_mem(n, lst, memo=None):
     if n == 0:
         return 1
+    if n < 1:
+        return 0
     if not memo:
         memo = {}
     elif n < 0 or not lst:
         return 0
-    # key = [tuple((n, tuple(lst))),
-    #         tuple((n - lst[0], tuple(lst))),
-    #         tuple((n, tuple(lst[1:])))]
+
+    # If a human is reading this,
+    # I'm sorry - this code is a mess.
+    # Nothing I can do but offer you condolences.
+    #  ___  ___  _ __ _ __ _   _
+    # / __|/ _ \| '__| '__| | | |
+    # \__ \ (_) | |  | |  | |_| |
+    # |___/\___/|_|  |_|   \__, |
+    #                       __/ |
+    #                      |___/
+
     key = tuple((n, tuple(lst[1:])))
     if key not in memo:
         memo[tuple((n - lst[0], tuple(lst)))] = find_num_changes_mem(n - lst[0], lst, memo)
@@ -109,40 +119,39 @@ def find_num_changes_mem(n, lst, memo=None):
 # You can add more validation cases below
 #########################
 
-#Question 1.a tests - you can and should add more    
-# print(four_bonacci_rec(0) == 0)
-# print(four_bonacci_rec(5) == 12)
-# print(four_bonacci_rec(8) == 85)
-#
-# #Question 1.b tests - you can and should add more
-# print(four_bonacci_mem(0) == 0)
-# print(four_bonacci_mem(5) == 12)
-# print(four_bonacci_mem(8) == 85)
-# print(four_bonacci_mem(100) == 14138518272689255365704383960)
-# #Question 2 tests - you can and should add more
-# print(climb_combinations_memo(4) == 5)
-# print(climb_combinations_memo(42) == 433494437)
+# Question 1.a tests - you can and should add more
+print(four_bonacci_rec(0) == 0)
+print(four_bonacci_rec(5) == 12)
+print(four_bonacci_rec(8) == 85)
 
-#Question 3 tests - you can and should add more    
-# cat_list = [1,1,2,5,14,42,132,429]
-# print(catalan_rec(3))
-# for n,res in enumerate(cat_list):
-#     print(catalan_rec(n) == res)
-# #
-# # #Question 4.a tests - you can and should add more
-# print(find_num_changes_rec(5,[1,2,5,6]) == 4)
-# print(find_num_changes_rec(4,[1,2,5,6]) == 3)
-# print(find_num_changes_rec(4,[1,2,5,6]))
-# print(find_num_changes_rec(0.9,[1,2,5,6]) == 0)
-# print(find_num_changes_rec(1,[2,5,6]) == 0)
-# print(find_num_changes_rec(-1,[1,2,5,6]) == 0)
-# print(find_num_changes_rec(2,[0.5,1]) == 3)
+#Question 1.b tests - you can and should add more
+print(four_bonacci_mem(0) == 0)
+print(four_bonacci_mem(5) == 12)
+print(four_bonacci_mem(8) == 85)
+print(four_bonacci_mem(100) == 14138518272689255365704383960)
+#Question 2 tests - you can and should add more
+print(climb_combinations_memo(4) == 5)
+print(climb_combinations_memo(42) == 433494437)
+
+# Question 3 tests - you can and should add more
+cat_list = [1,1,2,5,14,42,132,429]
+print(catalan_rec(3))
+for n,res in enumerate(cat_list):
+    print(catalan_rec(n) == res)
+#
+# #Question 4.a tests - you can and should add more
+print(find_num_changes_rec(5,[1,2,5,6]) == 4)
+print(find_num_changes_rec(4,[1,2,5,6]) == 3)
+print(find_num_changes_rec(4,[1,2,5,6]))
+print(find_num_changes_rec(0.9,[1,2,5,6]) == 0)
+print(find_num_changes_rec(1,[2,5,6]) == 0)
+print(find_num_changes_rec(-1,[1,2,5,6]) == 0)
+print(find_num_changes_rec(2,[0.5,1]) == 3)
 
 
 # Question 4.b tests - you can and should add more
 print(find_num_changes_mem(5,[1,2,5,6]) == 4)
 print(find_num_changes_mem(4,[1,2,5,6]) == 3)
-print(find_num_changes_mem(960,[1,2,5,6,13]))
-# print(find_num_changes_mem(0.9,[1,2,5,6]) == 0)
+print(find_num_changes_mem(0.9,[1,2,5,6]) == 0)
 
 # ============================== END OF FILE =================================
