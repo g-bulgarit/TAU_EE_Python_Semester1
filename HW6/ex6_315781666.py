@@ -79,7 +79,8 @@ def find_num_changes_rec(n, lst):
     elif n < 0 or not lst:
         return 0
 
-    return find_num_changes_rec(n-lst[0], lst) + find_num_changes_rec(n, lst [1:])
+    return find_num_changes_rec(n-lst[0], lst) + \
+           find_num_changes_rec(n, lst [1:])
 
 #########################################
 # Question 4.b - do not delete this comment
@@ -91,12 +92,14 @@ def find_num_changes_mem(n, lst, memo=None):
         memo = {}
     elif n < 0 or not lst:
         return 0
-    key = (n, tuple(lst))
+    # key = [tuple((n, tuple(lst))),
+    #         tuple((n - lst[0], tuple(lst))),
+    #         tuple((n, tuple(lst[1:])))]
+    key = tuple((n, tuple(lst[1:])))
     if key not in memo:
         memo[tuple((n - lst[0], tuple(lst)))] = find_num_changes_mem(n - lst[0], lst, memo)
         memo[tuple((n, tuple(lst[1:])))] = find_num_changes_mem(n, lst[1:], memo)
 
-    print(memo)
     return memo[tuple((n - lst[0], tuple(lst)))] + memo[tuple((n, tuple(lst[1:])))]
 
 
@@ -139,7 +142,7 @@ def find_num_changes_mem(n, lst, memo=None):
 # Question 4.b tests - you can and should add more
 print(find_num_changes_mem(5,[1,2,5,6]) == 4)
 print(find_num_changes_mem(4,[1,2,5,6]) == 3)
-print(find_num_changes_mem(900,[1,2,5,6,13]))
+print(find_num_changes_mem(960,[1,2,5,6,13]))
 # print(find_num_changes_mem(0.9,[1,2,5,6]) == 0)
 
 # ============================== END OF FILE =================================
