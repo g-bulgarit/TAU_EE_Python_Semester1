@@ -89,18 +89,25 @@ class Pizza:
 
 
 class Meal:
-	
+	beverage = None
+	pizza = None
+
 	def __init__(self, beverage, pizza):
-		pass
-	
+		self.beverage = beverage
+		self.pizza = pizza
+
 	def get_final_price(self, beverage_size, pizza_size):
-		pass
+		return self.beverage.get_final_price(beverage_size) + self.pizza.get_final_price(pizza_size)
 	
 	def is_healthy(self):
-		pass
+		if self.pizza.calories and self.beverage.is_diet:
+			return True
+		else:
+			return False
 
 
 # Tests
 diet_coke = Beverage("Coca Cola", 15, True)
 my_pizza = Pizza("Four Cheese", 50, 1200, ['Mozza', 'Gouda', 'Goat Cheese', 'Parm'])
+my_meal = Meal(diet_coke, my_pizza)
 pass
