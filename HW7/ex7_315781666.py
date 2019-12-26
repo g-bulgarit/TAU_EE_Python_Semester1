@@ -34,7 +34,6 @@ class Beverage:
 # Question 2 - do not delete this comment
 #########################################
 
-
 class Pizza:
 	name = None
 	price = None
@@ -87,7 +86,6 @@ class Pizza:
 # Question 3 - do not delete this comment
 #########################################
 
-
 class Meal:
 	beverage = None
 	pizza = None
@@ -104,10 +102,3 @@ class Meal:
 			return True
 		else:
 			return False
-
-
-# Tests
-diet_coke = Beverage("Coca Cola", 15, True)
-my_pizza = Pizza("Four Cheese", 50, 1200, ['Mozza', 'Gouda', 'Goat Cheese', 'Parm'])
-my_meal = Meal(diet_coke, my_pizza)
-pass
