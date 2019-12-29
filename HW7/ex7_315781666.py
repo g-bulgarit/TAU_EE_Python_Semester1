@@ -12,12 +12,12 @@ class Beverage:
 	is_diet = None
 	
 	def __init__(self, name, price, is_diet):
-		self.name = name
+		self.name = str(name)
 		if price > 0:
-			self.price = price
+			self.price = float(price)
 		else:
 			raise ValueError("Prices can't be negative")
-		self.is_diet = is_diet
+		self.is_diet = bool(is_diet)
 
 	def get_final_price(self, size="Large"):
 		if size == "Large":
@@ -41,13 +41,13 @@ class Pizza:
 	toppings = []
 
 	def __init__(self, name, price, calories, toppings):
-		self.name = name
+		self.name = str(name)
 		if price > 0:
-			self.price = price
+			self.price = float(price)
 		else:
 			raise ValueError("Price can't be negative")
 		if calories > 0:
-			self.calories = calories
+			self.calories = int(calories)
 		else:
 			raise ValueError("Calories can't be negative")
 		if toppings:
