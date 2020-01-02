@@ -2,6 +2,7 @@
 #########################################
 # Question 1 - do not delete this comment
 #########################################
+
 class RoomError(Exception):
     #A subclass of Exception that defines a new error type
     #DO NOT change this class
@@ -35,7 +36,7 @@ class Room:
 
         # Deal with satisfaction
         if type(satisfaction) != int and type(satisfaction) != float:
-            raise  TypeError("Satisfaction should be int or float...")
+            raise TypeError("Satisfaction should be int or float...")
         if satisfaction < 1.0 or satisfaction > 5.0:
             raise ValueError("Satisfaction is out of bounds.")
         self.satisfaction = float(satisfaction)
@@ -62,14 +63,12 @@ class Room:
 
     def clean(self):
         if self.can_clean():
-            self.clean_level = min(10,self.clean_level + self.rank)
+            self.clean_level = min(10, self.clean_level + self.rank)
         else:
             raise RoomError("Room cannot be cleaned")
 
     def better_than(self, other):
-        print (type(other))
-        # if type(other) != Room or type(other) != BudgetRoom or type(other) != LegacyRoom:
-        if not isinstance(other,Room):
+        if not isinstance(other, Room):
             raise TypeError("Incorrect room type")
         return ((self.rank,
                  self.floor,
@@ -104,8 +103,8 @@ class Room:
             if (self.rank,
                 self.floor,
                 self.clean_level) < (other.rank,
-                                      other.floor,
-                                      other.clean_level):
+                                     other.floor,
+                                     other.clean_level):
                 # Raise satisfaction
                 other.satisfaction = min(5.0, self.satisfaction + 1.0)
             # Erase guests from self
@@ -114,12 +113,12 @@ class Room:
 #########################################
 # Question 2 - do not delete this comment
 #########################################
-class BudgetRoom(Room):
-    def  __init__(self, floor, number, guests, clean_level,
-                  rank=1, satisfaction=1.0, clean_stock=0):
-        super().__init__(floor ,number, guests, clean_level, rank, satisfaction)
-        self.clean_stock = clean_stock
 
+
+class BudgetRoom(Room):
+    def __init__(self, floor, number, guests, clean_level, rank=1, satisfaction=1.0, clean_stock=0):
+        super().__init__(floor, number, guests, clean_level, rank, satisfaction)
+        self.clean_stock = clean_stock
 
     def __repr__(self):
         output_str = super().__repr__() + "\n"
@@ -173,15 +172,12 @@ class BudgetRoom(Room):
         self.clean_level = min(5.0, self.satisfaction + 0.8)
 
 
-
 class LegacyRoom(Room):
-    def  __init__(self, floor, number, guests,
-                  clean_level, rank=2, satisfaction=1.0,
-                  minibar_drinks = 2, minibar_snacks = 2):
+    def __init__(self, floor, number, guests, clean_level, rank=2, satisfaction=1.0,
+                 minibar_drinks=2, minibar_snacks=2):
         super().__init__(floor, number, guests, clean_level, rank, satisfaction)
         self.minibar_drinks = minibar_drinks
         self.minibar_snacks = minibar_snacks
-
 
     def __repr__(self):
         output_str = super().__repr__() + "\n"
@@ -226,6 +222,8 @@ class LegacyRoom(Room):
 #########################################
 # Question 3 - do not delete this comment
 #########################################
+
+
 class Hotel:
     def __init__(self, name, rooms):
         self.name = str(name)
@@ -242,7 +240,6 @@ class Hotel:
             if type(room) == LegacyRoom:
                 self.num_legacy_rooms += 1
         self.num_other_rooms = len(rooms) - self.num_legacy_rooms - self.num_budget_rooms
-
 
     def __repr__(self):
         output = f"{self.name} hotel has:\n" \
@@ -281,12 +278,9 @@ class Hotel:
                     current_room.move_to(room)
                     return room
 
-        if current_room == None:
+        if current_room is None:
             return None
 
-        pass # replace this with your implementation
-
-h = Hotel("Best",[BudgetRoom(15, 140, [], 5), BudgetRoom(1, 2,["Liat"], 7)])
 #########################################
 # Question 3 supplement - do not delete this comment
 #########################################
