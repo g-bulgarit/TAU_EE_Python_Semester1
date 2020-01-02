@@ -110,30 +110,44 @@ class Room:
 # Question 2 - do not delete this comment
 #########################################
 class BudgetRoom(Room):
-    def  __init__(self, floor, number, guests, clean_level,\
+    def  __init__(self, floor, number, guests, clean_level,
                   rank=1, satisfaction=1.0, clean_stock=0):
-        pass # replace this with your implementation
+        super().__init__(floor ,number, guests, clean_level, rank, satisfaction)
+        self.clean_stock = clean_stock
+
 
     def __repr__(self):
-        pass # replace this with your implementation
-
+        output_str = super.__repr__(self) + "\n"
+        addition = f"type: BudgetRoom\n" \
+                   f"clean_stock: {self.clean_level}"
+        output_str += addition
+        return output_str
 
     # Replace this comment with your methods' implementation
 
 
 class LegacyRoom(Room):
-    def  __init__(self, floor, number, guests, clean_level,\
-                  rank=2, satisfaction=1.0,\
+    def  __init__(self, floor, number, guests,
+                  clean_level, rank=2, satisfaction=1.0,
                   minibar_drinks = 2, minibar_snacks = 2):
-        pass # replace this with your implementation
+        super().__init__(floor, number, guests, clean_level, rank, satisfaction)
+        self.minibar_drinks = minibar_drinks
+        self.minibar_snacks = minibar_snacks
+
 
     def __repr__(self):
-        pass # replace this with your implementation
+        output_str = super.__repr__(self) + "\n"
+        addition = f"type: LegacyRoom\n" \
+                   f"minibar_drinks: {self.minibar_drinks}" \
+                   f"minibar_snacks: {self.minibar_snacks}"
+        output_str += addition
+        return output_str
 
 
     # Replace this comment with your methods' implementation
 
-   
+skadoosh = BudgetRoom(1, 12, ["Loren", "Or"], 5)
+badoosh = LegacyRoom(4, 652, ["Loren", "Or"], 5)
 #########################################
 # Question 3 - do not delete this comment
 #########################################
