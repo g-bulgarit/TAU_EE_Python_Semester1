@@ -24,6 +24,8 @@ class Room:
             raise ValueError("Clean level is out of bounds.")
         self.clean_level = int(clean_level)
 
+        self.can_be_cleaned = True
+
         # Deal with rank:
         if type(rank) != int:
             raise TypeError("Rank should be integer.")
@@ -56,12 +58,15 @@ class Room:
         return bool(len(self.guests))
 
     def can_clean(self):
-        return True
+        return self.can_be_cleaned
 
     def clean(self):
         # They have a mistake here, should be +=
         # Leaving it as = because this suits the example.
-        self.clean_level = min(10,self.clean_level + self.rank)
+        if self.can_clean():
+            self.clean_level = min(10,self.clean_level + self.rank)
+        else:
+            raise RoomError("Room cannot be cleaned")
 
     def better_than(self, other):
         if type(other) != Room:
@@ -117,13 +122,57 @@ class BudgetRoom(Room):
 
 
     def __repr__(self):
-        output_str = super.__repr__(self) + "\n"
+        output_str = super().__repr__() + "\n"
         addition = f"type: BudgetRoom\n" \
                    f"clean_stock: {self.clean_level}"
         output_str += addition
         return output_str
 
+    def is_occupied(self):
+        return super().is_occupied()
+
+    def can_clean(self):
+        if self.clean_stock > 0:
+            self.can_be_cleaned = True
+        else:
+            self.can_be_cleaned = False
+        return self.can_be_cleaned
+
+    def clean(self):
+        self.can_clean()
+        super().clean()
+        self.clean_stock -= 1
+
+    def better_than(self, other):
+        return super().better_than(other)
+
+    def check_in(self, guests):
+        super().clean()
+        if len(self.guests) == 0:
+            self.clean_stock = 0
+
+    def check_out(self):
+        super().check_out()
+
+    def move_to(self, other):
+        super().move_to(other)
+        if type(other) == BudgetRoom:
+            other.clean_stock = self.clean_stock
     # Replace this comment with your methods' implementation
+
+    def grant_clean(self):
+        if len(self.guests) == 0:
+            raise RoomError("Cannot grant an empty room")
+        self.clean_stock += 1
+        self.satisfaction = min(5.0, self.satisfaction + 0.5)
+
+    def grant_snack(self):
+        # Looks like another mistake in the pdf...
+        if len(self.guests) == 0:
+            raise RoomError("Cannot grant an empty room")
+        self.satisfaction = min(5.0, self.satisfaction + 0.8)
+        self.clean_level = min(5.0, self.satisfaction + 0.8)
+
 
 
 class LegacyRoom(Room):
@@ -136,7 +185,7 @@ class LegacyRoom(Room):
 
 
     def __repr__(self):
-        output_str = super.__repr__(self) + "\n"
+        output_str = super().__repr__() + "\n"
         addition = f"type: LegacyRoom\n" \
                    f"minibar_drinks: {self.minibar_drinks}" \
                    f"minibar_snacks: {self.minibar_snacks}"
@@ -146,8 +195,9 @@ class LegacyRoom(Room):
 
     # Replace this comment with your methods' implementation
 
-skadoosh = BudgetRoom(1, 12, ["Loren", "Or"], 5)
-badoosh = LegacyRoom(4, 652, ["Loren", "Or"], 5)
+r = Room(1, 12, ["dude"], 5, 3)
+skadoosh = BudgetRoom(1, 12, ["dude"], 5)
+#badoosh = LegacyRoom(4, 652, ["Loren", "Or"], 5)
 #########################################
 # Question 3 - do not delete this comment
 #########################################
