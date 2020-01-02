@@ -229,10 +229,26 @@ class Hotel:
     def __init__(self, name, rooms):
         self.name = str(name)
         self.rooms = list(rooms)
+        self.num_budget_rooms = 0
+        self.num_legacy_rooms = 0
+        self.num_occupied_rooms = 0
+
+        for room in rooms:
+            if room.is_occupied():
+                self.num_occupied_rooms += 1
+            if type(room) == BudgetRoom:
+                self.num_budget_rooms += 1
+            if type(room) == LegacyRoom:
+                self.num_legacy_rooms += 1
+        self.num_other_rooms = len(rooms) - self.num_legacy_rooms - self.num_budget_rooms
+
 
     def __repr__(self):
-        pass # replace this with your implementation
-                      
+        output = f"{self.name} hotel has:\n" \
+                 f"{self.num_budget_rooms} BudgetRooms" \
+                 f"{self.num_legacy_rooms} LegacyRooms" \
+                 f"{self.num_other_rooms} other room types" \
+                 f"{self.num_occupied_rooms} occupied rooms"
     def check_in(self, guests, rank):
         pass # replace this with your implementation
 
@@ -242,6 +258,7 @@ class Hotel:
     def upgrade(self, guest):
         pass # replace this with your implementation
 
+h = Hotel("Best",[BudgetRoom(15, 140, [], 5), BudgetRoom(1, 2,["Liat"], 7)])
 #########################################
 # Question 3 supplement - do not delete this comment
 #########################################
