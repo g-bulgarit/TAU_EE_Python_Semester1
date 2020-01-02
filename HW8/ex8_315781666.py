@@ -222,20 +222,14 @@ class LegacyRoom(Room):
         self.satisfaction += min(5.0, self.satisfaction + 0.3 * quantity)
         self.clean_level = max(1, self.clean_level - 1)
 
-
-
-    # Replace this comment with your methods' implementation
-
-r = Room(1, 12, ["dude"], 5, 3)
-skadoosh = BudgetRoom(1, 12, ["dude"], 5)
-badoosh = LegacyRoom(4, 652, ["Loren", "Or"], 5)
 #########################################
 # Question 3 - do not delete this comment
 #########################################
 class Hotel:
     def __init__(self, name, rooms):
-        pass # replace this with your implementation
-            
+        self.name = str(name)
+        self.rooms = list(rooms)
+
     def __repr__(self):
         pass # replace this with your implementation
                       
