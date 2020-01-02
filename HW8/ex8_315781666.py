@@ -61,8 +61,6 @@ class Room:
         return self.can_be_cleaned
 
     def clean(self):
-        # They have a mistake here, should be +=
-        # Leaving it as = because this suits the example.
         if self.can_clean():
             self.clean_level = min(10,self.clean_level + self.rank)
         else:
@@ -192,12 +190,45 @@ class LegacyRoom(Room):
         output_str += addition
         return output_str
 
+    def is_occupied(self):
+        return super().is_occupied()
+
+    def can_clean(self):
+        return True
+
+    def clean(self):
+        super().clean()
+
+    def better_than(self, other):
+        super().better_than(other)
+
+    def check_in(self, guests):
+        super().check_in(guests)
+        self.minibar_snacks = 2
+        self.minibar_drinks = 2
+
+    def check_out(self):
+        super().check_out()
+
+    def move_to(self, other):
+        super().move_to(other)
+
+    def add_drinks(self, quantity):
+        self.minibar_drinks += quantity
+        self.satisfaction = min(5.0, self.satisfaction + 0.2 * quantity)
+
+    def add_snacks(self, quantity):
+        self.minibar_snacks += quantity
+        self.satisfaction += min(5.0, self.satisfaction + 0.3 * quantity)
+        self.clean_level = max(1, self.clean_level - 1)
+
+
 
     # Replace this comment with your methods' implementation
 
 r = Room(1, 12, ["dude"], 5, 3)
 skadoosh = BudgetRoom(1, 12, ["dude"], 5)
-#badoosh = LegacyRoom(4, 652, ["Loren", "Or"], 5)
+badoosh = LegacyRoom(4, 652, ["Loren", "Or"], 5)
 #########################################
 # Question 3 - do not delete this comment
 #########################################
