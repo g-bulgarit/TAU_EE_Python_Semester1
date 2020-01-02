@@ -67,7 +67,9 @@ class Room:
             raise RoomError("Room cannot be cleaned")
 
     def better_than(self, other):
-        if type(other) != Room:
+        print (type(other))
+        # if type(other) != Room or type(other) != BudgetRoom or type(other) != LegacyRoom:
+        if not isinstance(other,Room):
             raise TypeError("Incorrect room type")
         return ((self.rank,
                  self.floor,
@@ -245,17 +247,43 @@ class Hotel:
 
     def __repr__(self):
         output = f"{self.name} hotel has:\n" \
-                 f"{self.num_budget_rooms} BudgetRooms" \
-                 f"{self.num_legacy_rooms} LegacyRooms" \
-                 f"{self.num_other_rooms} other room types" \
-                 f"{self.num_occupied_rooms} occupied rooms"
+                 f"{self.num_budget_rooms} BudgetRooms\n" \
+                 f"{self.num_legacy_rooms} LegacyRooms\n" \
+                 f"{self.num_other_rooms} other room types\n" \
+                 f"{self.num_occupied_rooms} occupied rooms\n"
+        return output
+
     def check_in(self, guests, rank):
-        pass # replace this with your implementation
+            for room in self.rooms:
+                if room.rank == rank and not room.is_occupied():
+                    room.check_in(guests)
+                    return room
+                else:
+                    return None
 
     def check_out(self, guest):
-        pass # replace this with your implementation
+        for room in self.rooms:
+            if guest.lower() in room.guests:
+                room.check_out()
+                return room
+            else:
+                return None
 
     def upgrade(self, guest):
+        current_room = None
+        for room in self.rooms:
+            if guest.lower() in room.guests:
+                current_room = room
+
+        for room in self.rooms:
+            if not (room.is_occupied()):
+                if room.better_than(current_room):
+                    current_room.move_to(room)
+                    return room
+
+        if current_room == None:
+            return None
+
         pass # replace this with your implementation
 
 h = Hotel("Best",[BudgetRoom(15, 140, [], 5), BudgetRoom(1, 2,["Liat"], 7)])
@@ -285,5 +313,5 @@ def test_hotel():
 # You can add more validation cases below
 #########################################
 
-##test_hotel() 
+test_hotel()
 ## After you are done implenting all classes and methods, you may comment-in the call to test_hotel() and compare the results with the content of test_hotel_output.txt
