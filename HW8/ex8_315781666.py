@@ -147,7 +147,6 @@ class BudgetRoom(Room):
         return super().better_than(other)
 
     def check_in(self, guests):
-        super().clean()
         if len(self.guests) == 0:
             self.clean_stock = 0
 
@@ -257,17 +256,18 @@ class Hotel:
             for room in self.rooms:
                 if room.rank == rank and not room.is_occupied():
                     room.check_in(guests)
+                    self.num_occupied_rooms += 1
                     return room
-                else:
-                    return None
+            return None
 
     def check_out(self, guest):
         for room in self.rooms:
             if guest.lower() in room.guests:
                 room.check_out()
+                self.num_occupied_rooms -= 1
                 return room
-            else:
-                return None
+
+        return None
 
     def upgrade(self, guest):
         current_room = None
