@@ -15,10 +15,36 @@ class Room:
     clean_level = None
     rank = None
     satisfaction = None
-    
+
     def  __init__(self, floor, number, guests, clean_level, rank, satisfaction = 1.0):
-        pass # replace this with your implementation
-    
+        self.floor = int(floor)
+        self.number = int(number)
+
+        # Convert guests to lowercase
+        for name in guests:
+            self.guests.append(name.lower())
+
+        # Deal with cleanliness...
+        if type(clean_level) != int:
+            raise TypeError("Cleanliness level should be integer.")
+        if clean_level < 1 or clean_level > 10:
+            raise ValueError("Clean level is out of bounds.")
+        self.clean_level = int(clean_level)
+
+        # Deal with rank:
+        if type(rank) != int:
+            raise TypeError("Rank should be integer.")
+        if rank < 1 or rank > 3:
+            raise TypeError("Rank is out of bounds.")
+        self.rank = int(rank)
+
+        # Deal with satisfaction
+        if type(satisfaction) != int or type(satisfaction) != float:
+            raise  TypeError("Satisfaction should be int or float...")
+        if satisfaction < 1 or satisfaction > 5:
+            raise ValueError("Satisfaction is out of bounds.")
+        self.satisfaction = float(satisfaction)
+
     def __repr__(self):
         pass # replace this with your implementation
 
