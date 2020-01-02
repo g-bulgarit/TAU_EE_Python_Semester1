@@ -8,18 +8,11 @@ class RoomError(Exception):
     pass
 
 class Room:
-    # Not required but I'm used to doing it like this...
-    floor = None
-    number = None
-    guests = []
-    clean_level = None
-    rank = None
-    satisfaction = None
 
     def  __init__(self, floor, number, guests, clean_level, rank, satisfaction = 1.0):
         self.floor = int(floor)
         self.number = int(number)
-
+        self.guests = []
         # Convert guests to lowercase
         for name in guests:
             self.guests.append(name.lower())
@@ -39,35 +32,84 @@ class Room:
         self.rank = int(rank)
 
         # Deal with satisfaction
-        if type(satisfaction) != int or type(satisfaction) != float:
+        if type(satisfaction) != int and type(satisfaction) != float:
             raise  TypeError("Satisfaction should be int or float...")
-        if satisfaction < 1 or satisfaction > 5:
+        if satisfaction < 1.0 or satisfaction > 5.0:
             raise ValueError("Satisfaction is out of bounds.")
         self.satisfaction = float(satisfaction)
 
     def __repr__(self):
-        pass # replace this with your implementation
+        # Huge format string...
+        if len(self.guests) == 0:
+            formatted_guests = "empty"
+        else:
+            formatted_guests = ", ".join(self.guests)
+        output_str = f"floor: {self.floor}\n" \
+                     f"number: {self.number}\n" \
+                     f"guests: {formatted_guests}\n" \
+                     f"clean_level: {self.clean_level}\n" \
+                     f"rank: {self.rank}\n" \
+                     f"satisfaction: {round(self.satisfaction,1)}"
+        return output_str
 
     def is_occupied(self):
-        pass # replace this with your implementation
+        return bool(len(self.guests))
 
     def can_clean(self):
-        pass # replace this with your implementation
+        return True
 
     def clean(self):
-        pass # replace this with your implementation
+        # They have a mistake here, should be +=
+        # Leaving it as = because this suits the example.
+        self.clean_level = min(10,self.clean_level + self.rank)
 
     def better_than(self, other):
-        pass # replace this with your implementation
+        if type(other) != Room:
+            raise TypeError("Incorrect room type")
+        return ((self.rank,
+                 self.floor,
+                 self.clean_level) > (other.rank,
+                                      other.floor,
+                                      other.clean_level))
 
     def check_in(self, guests):
-        pass # replace this with your implementation
+        if len(self.guests) != 0:
+            raise RoomError("Cannot check-in new guests to an occupied room")
+        for guest in guests:
+            self.guests.append(guest.lower())
+        self.satisfaction = 1.0
 
     def check_out(self):
-        pass # replace this with your implementation
-    
+        if len(self.guests) == 0:
+            raise RoomError("Cannot check-out an empty room")
+        self.guests = []
+
     def move_to(self, other):
-        pass # replace this with your implementation
+        if len(self.guests) == 0:
+            raise RoomError("Cannot move guests from an empty room")
+        if len(other.guests) != 0:
+            # Occupied...
+            raise RoomError("Cannot move guests to an occupied room")
+        else:
+            # Move the dudessss
+            for guest in self.guests:
+                other.guests.append(guest)
+
+            # Check if the other room is better!
+            if (self.rank,
+                self.floor,
+                self.clean_level) < (other.rank,
+                                      other.floor,
+                                      other.clean_level):
+                # Raise satisfaction
+                other.satisfaction = min(5.0, self.satisfaction + 1.0)
+            # Erase guests from self
+            self.guests = []
+
+r1 = Room(2, 23, ["Dana", "ron"], 5, 2)
+r1_better = Room(6, 57, [], 4, 3)
+
+print(a)
 
 #########################################
 # Question 2 - do not delete this comment
