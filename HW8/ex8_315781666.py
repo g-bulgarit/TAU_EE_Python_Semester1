@@ -106,11 +106,6 @@ class Room:
             # Erase guests from self
             self.guests = []
 
-r1 = Room(2, 23, ["Dana", "ron"], 5, 2)
-r1_better = Room(6, 57, [], 4, 3)
-
-print(a)
-
 #########################################
 # Question 2 - do not delete this comment
 #########################################
