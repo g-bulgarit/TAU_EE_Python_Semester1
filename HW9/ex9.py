@@ -14,16 +14,22 @@ def load_training_data(filename):
         table = np.genfromtxt(fp, delimiter=',', dtype=None, encoding="utf-8")
         data = table[1:,1:]
         row_names = table[0][1:]
-        column_names = table[:,0][1:]
+        column_names = table[:, 0][1:]
 
     return data.astype(float), column_names, row_names
 
 def get_highest_weight_loss_trainee(data, column_names, row_names):
-    diff_matrix = np.abs(data[:,0] - data[:,-1])
+    diff_matrix = np.abs(data[:, 0] - data[:, -1])
     return column_names[np.argmax(diff_matrix)]
 
 def get_diff_data(data, column_names, row_names):
-    pass
+    diff_matrix = np.copy(data)
+    diff_matrix[:, 0] = 0
+
+    # Used loop here, find another way
+    for i in range(1, diff_matrix.shape[1]):
+        diff_matrix[:, i] = data[:,i]-data[:,i-1]
+    return diff_matrix
 
 
 def get_highest_loss_month(data, column_names, row_names):
@@ -65,3 +71,4 @@ def nearest_enlarge(img, a):
 # Tests for development:
 data, col, row = load_training_data("weight_input.csv")
 print(get_highest_weight_loss_trainee(data, col, row))
+print(get_diff_data(data, col, row))
