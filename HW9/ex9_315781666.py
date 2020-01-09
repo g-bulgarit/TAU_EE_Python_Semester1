@@ -66,8 +66,21 @@ def find_best_kingdom(kingdoms, bounties):
 # Question 3 - do not delete this comment
 #########################################
 def compute_entropy(img):
-    pass
+    pixel_map = imageio.imread(img)
+    entropy = 0
+    bin_cnt = np.bincount(pixel_map.flatten())
+    total_cols = sum(bin_cnt)
+    print(total_cols)
+    for index, value in enumerate(bin_cnt):
+        _Pi = bin_cnt[index]/total_cols
+        if _Pi != 0:
+            entropy += (-_Pi * np.log2(_Pi))
 
+
+    # for color_value in range(255):
+    #     if np.sum(np.bincount(color_value, pixel_map)) != 0:
+    #         entropy += np.sum(np.bincount(color_value, pixel_map))
+    return entropy
 
 def nearest_enlarge(img, a):
     pass
@@ -78,4 +91,10 @@ data, col, row = load_training_data("weight_input.csv")
 print(get_highest_weight_loss_trainee(data, col, row))
 print(get_diff_data(data, col, row))
 print(get_highest_loss_month(data, col, row))
-print(get_relative_diff_table(data, col, row))
+# print(get_relative_diff_table(data, col, row))
+
+
+
+
+# ------
+print(compute_entropy("cameraman.tif"))
