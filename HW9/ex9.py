@@ -16,15 +16,11 @@ def load_training_data(filename):
         row_names = table[0][1:]
         column_names = table[:,0][1:]
 
-    return data, column_names, row_names
+    return data.astype(float), column_names, row_names
 
-# data, col, row = load_training_data("weight_input.csv")
-# print(data)
-# print(col)
-# print(row)
 def get_highest_weight_loss_trainee(data, column_names, row_names):
-    pass
-
+    diff_matrix = np.abs(data[:,0] - data[:,-1])
+    return column_names[np.argmax(diff_matrix)]
 
 def get_diff_data(data, column_names, row_names):
     pass
@@ -64,3 +60,8 @@ def compute_entropy(img):
 
 def nearest_enlarge(img, a):
     pass
+
+
+# Tests for development:
+data, col, row = load_training_data("weight_input.csv")
+print(get_highest_weight_loss_trainee(data, col, row))
