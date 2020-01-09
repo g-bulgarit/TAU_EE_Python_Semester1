@@ -39,7 +39,10 @@ def get_highest_loss_month(data, column_names, row_names):
 
 
 def get_relative_diff_table(data, column_names, row_names):
-    pass
+    diff_matrix = get_diff_data(data ,column_names, row_names)
+    diff_matrix = (diff_matrix[:,1:] - diff_matrix[:,:])/diff_matrix[:,:]
+    return diff_matrix
+
 
 
 #########################################
@@ -75,3 +78,4 @@ data, col, row = load_training_data("weight_input.csv")
 print(get_highest_weight_loss_trainee(data, col, row))
 print(get_diff_data(data, col, row))
 print(get_highest_loss_month(data, col, row))
+print(get_relative_diff_table(data, col, row))
