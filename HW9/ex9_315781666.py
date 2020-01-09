@@ -68,18 +68,13 @@ def find_best_kingdom(kingdoms, bounties):
 def compute_entropy(img):
     pixel_map = imageio.imread(img)
     entropy = 0
+
     bin_cnt = np.bincount(pixel_map.flatten())
-    total_cols = sum(bin_cnt)
-    print(total_cols)
     for index, value in enumerate(bin_cnt):
-        _Pi = bin_cnt[index]/total_cols
+        _Pi = bin_cnt[index]/sum(bin_cnt)
         if _Pi != 0:
             entropy += (-_Pi * np.log2(_Pi))
 
-
-    # for color_value in range(255):
-    #     if np.sum(np.bincount(color_value, pixel_map)) != 0:
-    #         entropy += np.sum(np.bincount(color_value, pixel_map))
     return entropy
 
 def nearest_enlarge(img, a):
