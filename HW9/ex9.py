@@ -33,7 +33,9 @@ def get_diff_data(data, column_names, row_names):
 
 
 def get_highest_loss_month(data, column_names, row_names):
-    pass
+    diff_matrix = get_diff_data(data ,column_names, row_names)
+    sum_matrix = sum(diff_matrix[:,:])
+    return row_names[np.argmax(np.abs(sum_matrix))]
 
 
 def get_relative_diff_table(data, column_names, row_names):
@@ -72,3 +74,4 @@ def nearest_enlarge(img, a):
 data, col, row = load_training_data("weight_input.csv")
 print(get_highest_weight_loss_trainee(data, col, row))
 print(get_diff_data(data, col, row))
+print(get_highest_loss_month(data, col, row))
