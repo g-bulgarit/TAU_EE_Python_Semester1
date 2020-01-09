@@ -10,9 +10,18 @@ import matplotlib.pyplot as plt
 #########################################
 
 def load_training_data(filename):
-    pass
+    with open(filename,'rb') as fp:
+        table = np.genfromtxt(fp, delimiter=',', dtype=None, encoding="utf-8")
+        data = table[1:,1:]
+        row_names = table[0][1:]
+        column_names = table[:,0][1:]
 
+    return data, column_names, row_names
 
+# data, col, row = load_training_data("weight_input.csv")
+# print(data)
+# print(col)
+# print(row)
 def get_highest_weight_loss_trainee(data, column_names, row_names):
     pass
 
