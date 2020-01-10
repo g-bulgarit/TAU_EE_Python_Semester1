@@ -73,7 +73,7 @@ def find_best_kingdom(kingdoms, bounties):
     #   / / /\ \ \/ / /\ \ \    Technically,
     #  / / /__\_\/ / /__\_\ \       A one liner.
     # / /_/_______/ /________\
-    # \ \ \______ \ \______  /          Although,
+    # \ \ \______ \ \______  /          Actually,
     #  \ \ \  / /\ \ \  / / /               A mess.
     #   \ \ \/ / /\ \ \/ / /
     #    \ \/ / /__\_\/ / /
@@ -83,7 +83,6 @@ def find_best_kingdom(kingdoms, bounties):
     return bounties.apply(lambda x: (bounties.loc[:, "Bounty"]
                                      - bounties.loc[:, "Expenses"])
                                      /bounties.loc[:, ("Duration")]).idxmax()[0]
-
 
 #########################################
 # Question 3 - do not delete this comment
