@@ -23,12 +23,13 @@ def get_highest_weight_loss_trainee(data, column_names, row_names):
     return column_names[np.argmax(diff_matrix)]
 
 def get_diff_data(data, column_names, row_names):
+    # Copy original just for giggles...
     diff_matrix = np.copy(data)
-    diff_matrix[:, 0] = 0
 
-    # Used loop here, find another way
-    for i in range(1, diff_matrix.shape[1]):
-        diff_matrix[:, i] = data[:,i]-data[:,i-1]
+    # Diff_mat = original - ROR(1) of itself.
+    # Then fix the first column to be zeros.
+    diff_matrix -= np.roll(diff_matrix,1)
+    diff_matrix[:, 0] = 0
     return diff_matrix
 
 
@@ -78,7 +79,9 @@ def compute_entropy(img):
     return entropy
 
 def nearest_enlarge(img, a):
-    pass
+    pixel_map = imageio.imread(img)
+
+    return pixel_map
 
 
 # Tests for development:
@@ -93,3 +96,7 @@ print(get_highest_loss_month(data, col, row))
 
 # ------
 print(compute_entropy("cameraman.tif"))
+I = nearest_enlarge('cameraman.tif', 2)
+plt.figure()
+plt.imshow(I, cmap= plt.cm.gray)
+plt.show()
