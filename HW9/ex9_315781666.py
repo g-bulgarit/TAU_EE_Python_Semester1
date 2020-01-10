@@ -49,18 +49,40 @@ def get_relative_diff_table(data, column_names, row_names):
 #########################################
 # Question 2 - do not delete this comment
 #########################################
-
+import pandas as pd
 
 def read_missions_file(file_name):
-    pass
-
+    try:
+        fp = pd.read_csv(file_name, )
+        fp.rename(columns={},
+                  index={0:"Temaria", 1:"Redania", 2:"Keadwen", 3:"Cintra"},
+                  inplace=True)
+        fp.drop(["Kingdom"], axis=1, inplace=True)
+        return fp
+    except IOError:
+        raise IOError("Could not open file.")
 
 def sum_rewards(bounties):
-    pass
-
+    return bounties["Bounty"].sum() - bounties["Expenses"].sum()
 
 def find_best_kingdom(kingdoms, bounties):
-    pass
+    #       ____________
+    #      /\  ________ \
+    #     /  \ \______/\ \
+    #    / /\ \ \  / /\ \ \
+    #   / / /\ \ \/ / /\ \ \    Technically,
+    #  / / /__\_\/ / /__\_\ \       A one liner.
+    # / /_/_______/ /________\
+    # \ \ \______ \ \______  /          Although,
+    #  \ \ \  / /\ \ \  / / /               A mess.
+    #   \ \ \/ / /\ \ \/ / /
+    #    \ \/ / /__\_\/ / /
+    #     \  / /______\/ /
+    #      \/___________/
+
+    return bounties.apply(lambda x: (bounties.loc[:, "Bounty"]
+                                     - bounties.loc[:, "Expenses"])
+                                     /bounties.loc[:, ("Duration")]).idxmax()[0]
 
 
 #########################################
@@ -91,7 +113,10 @@ print(get_diff_data(data, col, row))
 print(get_highest_loss_month(data, col, row))
 # print(get_relative_diff_table(data, col, row))
 
-
+# ------
+q = read_missions_file("missions.csv")
+print(sum_rewards(q))
+print(find_best_kingdom(None, q))
 
 
 # ------
