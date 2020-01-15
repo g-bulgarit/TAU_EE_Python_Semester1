@@ -146,6 +146,7 @@ class BudgetRoom(Room):
         return super().better_than(other)
 
     def check_in(self, guests):
+        super().check_in([guest.lower() for guest in guests])
         if len(self.guests) == 0:
             self.clean_stock = 0
 
@@ -200,7 +201,7 @@ class LegacyRoom(Room):
         super().better_than(other)
 
     def check_in(self, guests):
-        super().check_in(guests)
+        super().check_in([guest.lower() for guest in guests])
         self.minibar_snacks = 2
         self.minibar_drinks = 2
 
