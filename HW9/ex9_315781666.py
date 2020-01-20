@@ -96,31 +96,31 @@ def compute_entropy(img):
         _Pi = bin_cnt[index]/sum(bin_cnt)
         if _Pi != 0:
             entropy += (-_Pi * np.log2(_Pi))
-
     return entropy
 
 def nearest_enlarge(img, a):
     pixel_map = imageio.imread(img)
+    size_x, size_y = (pixel_map.shape)
+    newSize_x, newSize_y = (size_x*a, size_y*a)
+    container = np.zeros(shape=(newSize_x, newSize_y), dtype=int)
+    for row_idx, row in enumerate(container):
+        for col_idx, col in enumerate(row):
+            container[row_idx][col_idx]  = pixel_map[int(np.floor(row_idx*size_y/newSize_y))][int(np.floor(col_idx*size_x/newSize_x))]
+    return container
 
-    return pixel_map
-
-
+# ---------------------------------------
 # Tests for development:
 data, col, row = load_training_data("weight_input.csv")
 print(get_highest_weight_loss_trainee(data, col, row))
 print(get_diff_data(data, col, row))
 print(get_highest_loss_month(data, col, row))
-# print(get_relative_diff_table(data, col, row))
-
 # ------
 q = read_missions_file("missions.csv")
 print(sum_rewards(q))
 print(find_best_kingdom(None, q))
-
-
 # ------
 print(compute_entropy("cameraman.tif"))
-I = nearest_enlarge('cameraman.tif', 2)
+I = nearest_enlarge('cameraman.tif', 4)
 plt.figure()
 plt.imshow(I, cmap= plt.cm.gray)
 plt.show()
